@@ -6,80 +6,34 @@ const deleteAudio = (audio) => {
     }, 1500);
 };
 
-document.addEventListener("keydown", (e) => {
-    if(e.code === "KeyA") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/A.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyS") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/S.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyW") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/W.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyE") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/E.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyT") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/T.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyY") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/Y.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyU") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/U.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyD") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/D.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyF") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/F.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyG") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/G.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyH") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/H.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    } else if(e.code === "KeyJ") {
-        const audio = document.createElement("audio");
-        audio.src = "../audio/J.mp3";
-        piano.appendChild(audio);
-        audio.play();
-        deleteAudio(audio);
-    }   else {
-        console.log('waring');
+const keysObject = {
+    KeyA : "../audio/A.mp3",
+    KeyS : "../audio/S.mp3",
+    KeyW : "../audio/W.mp3",
+    KeyD : "../audio/D.mp3",
+    KeyE : "../audio/E.mp3",
+    KeyF : "../audio/F.mp3",
+    KeyG : "../audio/G.mp3",
+    KeyY : "../audio/Y.mp3",
+    KeyH : "../audio/H.mp3",
+    KeyJ : "../audio/J.mp3",
+    KeyU : "../audio/U.mp3",
+}
+
+const playSound = (code) => {
+    for(let [key, value] of Object.entries(keysObject)) {
+        console.log(code.code, key);
+        if(code.code === key) {
+            const audio = document.createElement("audio");
+            piano.appendChild(audio);
+            audio.src = keysObject[key];
+            audio.load();
+            audio.play();
+            deleteAudio(audio);
+        }
     }
+}
+
+window.addEventListener("keydown", ({code}) => {
+    playSound({code});
 });
